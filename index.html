@@ -50,19 +50,42 @@
         a:hover {
             text-decoration: underline;
         }
+
+        .skip-link {
+            position: absolute;
+            left: -9999px;
+            top: auto;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+        }
+
+        .skip-link:focus {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: auto;
+            height: auto;
+            padding: 1rem;
+            background: var(--bg-color);
+            color: var(--link-color);
+            z-index: 1000;
+            text-decoration: underline;
+        }
     </style>
     <script defer src="https://analytics.codequalitycheck.com/script.js" data-website-id="f3f5f99d-9af5-4282-8110-af072a1bee0e"></script>
 </head>
 <body>
-    <div class="container">
+    <a href="#main-content" class="skip-link">Skip to content</a>
+    <main id="main-content" class="container">
         <h1>Yuri Prezument</h1>
         <p>Software Developer & Consultant with 15+ years of experience.</p>
         <p>Specializing in Python and backend systems.</p>
         <p>
-            <a href="https://github.com/yprez" target="_blank">GitHub</a>
+            <a href="https://github.com/yprez" target="_blank" rel="noopener noreferrer">GitHub</a>
             |
-            <a href="https://linkedin.com/in/yprez" target="_blank">LinkedIn</a>
+            <a href="https://linkedin.com/in/yprez" target="_blank" rel="noopener noreferrer">LinkedIn</a>
         </p>
-    </div>
+    </main>
 </body>
 </html>
