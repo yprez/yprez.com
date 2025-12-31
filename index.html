@@ -12,13 +12,11 @@
             --link-color: #007acc;
         }
 
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --bg-color: #121212;
-                --text-color: #e0e0e0;
-                --container-bg: #1e1e1e;
-                --link-color: #80bfff;
-            }
+        [data-theme="dark"] {
+            --bg-color: #121212;
+            --text-color: #e0e0e0;
+            --container-bg: #1e1e1e;
+            --link-color: #80bfff;
         }
 
         body {
@@ -31,6 +29,7 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
+            transition: background-color 0.3s, color 0.3s;
         }
 
         .container {
@@ -39,6 +38,7 @@
             padding: 40px;
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
+            transition: background-color 0.3s;
         }
 
         a {
@@ -72,11 +72,30 @@
             z-index: 1000;
             text-decoration: underline;
         }
+
+        .theme-toggle {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.25rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 8px;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+
+        .theme-toggle:hover {
+            opacity: 1;
+        }
     </style>
-    <script defer src="https://analytics.codequalitycheck.com/script.js" data-website-id="f3f5f99d-9af5-4282-8110-af072a1bee0e"></script>
+    <script defer src="https://analytics.codequalitycheck.com/script.js" data-website-id="6676f7e7-9228-4d4b-8b5f-96585df84e9c"></script>
 </head>
 <body>
     <a href="#main-content" class="skip-link">Skip to content</a>
+    <button class="theme-toggle" id="theme-toggle" title="Toggle theme">🌙</button>
     <main id="main-content" class="container">
         <h1>Yuri Prezument</h1>
         <p>Software Developer & Consultant with 15+ years of experience.</p>
@@ -87,5 +106,19 @@
             <a href="https://linkedin.com/in/yprez" target="_blank" rel="noopener noreferrer">LinkedIn</a>
         </p>
     </main>
+    <script>
+        (function() {
+            var theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-theme', theme);
+            document.getElementById('theme-toggle').textContent = theme === 'dark' ? '☀️' : '🌙';
+
+            document.getElementById('theme-toggle').addEventListener('click', function() {
+                var current = document.documentElement.getAttribute('data-theme');
+                var next = current === 'dark' ? 'light' : 'dark';
+                document.documentElement.setAttribute('data-theme', next);
+                this.textContent = next === 'dark' ? '☀️' : '🌙';
+            });
+        })();
+    </script>
 </body>
 </html>
