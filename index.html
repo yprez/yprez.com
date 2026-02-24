@@ -98,8 +98,9 @@
     <button class="theme-toggle" id="theme-toggle" title="Toggle theme">🌙</button>
     <main id="main-content" class="container">
         <h1>Yuri Prezument</h1>
-        <p>Software Developer & Consultant with 15+ years of experience.</p>
+        <p>Software Developer with <a href="#" id="years-toggle" style="color: inherit; font-weight: inherit"></a>.</p>
         <p>Specializing in Python and backend systems.</p>
+        <p>Projects: <a href="https://codequalitycheck.com" target="_blank" rel="noopener noreferrer">codequalitycheck.com</a></p>
         <p>
             <a href="https://github.com/yprez" target="_blank" rel="noopener noreferrer">GitHub</a>
             |
@@ -108,6 +109,22 @@
     </main>
     <script>
         (function() {
+            var year = new Date().getFullYear();
+            var professional = (year - 2011) + '+ years of professional experience';
+            var programming = (year - 2001) + '+ years of programming experience';
+            var showingProfessional = true;
+            var yearsEl = document.getElementById('years-toggle');
+            yearsEl.textContent = professional;
+            yearsEl.title = 'Click to see total programming experience';
+            yearsEl.addEventListener('click', function(e) {
+                e.preventDefault();
+                showingProfessional = !showingProfessional;
+                yearsEl.textContent = showingProfessional ? professional : programming;
+                yearsEl.title = showingProfessional
+                    ? 'Click to see total programming experience'
+                    : 'Click to see professional experience';
+            });
+
             var theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
             document.documentElement.setAttribute('data-theme', theme);
             document.getElementById('theme-toggle').textContent = theme === 'dark' ? '☀️' : '🌙';
